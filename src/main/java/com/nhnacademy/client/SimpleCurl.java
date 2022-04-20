@@ -1,33 +1,65 @@
 package com.nhnacademy.client;
 
-import java.io.*;
+import com.beust.jcommander.JCommander;
+import com.beust.jcommander.Parameter;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 
 
 public class SimpleCurl {
-    private Scanner scanner = new Scanner(System.in);
-    private long count = 0L;
+    //필수 조건
+    @Parameter(required = true)
+    private String ip;
+
+    @Parameter(names = {"-X", "METHOD"})
+    private String method = "GET";
+
+    @Parameter(names = "-d")
+    private String data = "";
+
+    @Parameter(names = {"-v", "verbose"})
+    private boolean verbose = false;
+
+    @Parameter(names = {"-H", "Header"})
+    private List<String> customHeaders = new ArrayList<>();
+
+    public String getMethod() {
+        return method;
+    }
+
     private boolean used = false;
 
-
-    public static void main(String[] argc) {
-        SimpleCurl scurl = new SimpleCurl();
-        scurl.compareArgv(argc);
-        scurl.start(argc[1],80);
+    public String getBody() {
+        return data;
     }
-    public void compareArgv(String[] argc){
-        for (String s : argc) {
-            System.out.printf(s+" ");
-            if(s.equals("scurl")) setUsed(true);
-        }
-        if(!isUsed()) throw new IllegalArgumentException();
+
+    public String getIp() {
+        return ip;
+    }
+
+    public static void main(String[] argv) {
+        SimpleCurl scurl = new SimpleCurl();
+        JCommander jCommander = new JCommander(scurl);
+        jCommander.setCaseSensitiveOptions(false);
+        jCommander.parse(argv);
+
+        scurl.start(scurl.getIp(), 80, argv);
+    }
+
+    public String stringUrl(URL url, String[] argc) {
+        customHeaders.add("Content-Length: " + getBody().length());
+        return getMethod() + " /" + getMethod().toLowerCase() + " HTTP/1.1"
+            + "\n" + "Host: " + url.getHost()
+            + "\n" + String.join("\n", customHeaders)
+            + "\n"
+            + "\n" + getBody();
     }
 
     public void run(String host, int port) {
@@ -35,44 +67,37 @@ public class SimpleCurl {
     }
 
     //정렬된 ip 가 들어가야할 것같다. port 도 default 로 지정해주고 /
-    public void start(String ip, int port) {
+    public void start(String ip, int port, String[] argc) {
         try {
             String line = "";
             URL url = new URL(ip);
-            URL obj = new URL("https://crunchify.com");
             var inetAddress = InetAddress.getByName(url.getHost());
             var clientSocket = new Socket(inetAddress, port);
             var reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            var writer = new PrintStream((clientSocket.getOutputStream()));
 
-            StringBuilder builder = new StringBuilder();
-            while ( (line = reader.readLine()) != null) {
-                builder.append(line).append(System.lineSeparator());
+            //요청 라인
+            writer.print(stringUrl(url, argc));
+            //헤더 정보
+
+            //출력
+            while ((line = reader.readLine()) != null) {
+                if (!verbose) {
+                    if (!line.equals("{")) {
+                        continue;
+                    } else {
+                        verbose = true;
+                    }
+                }
+                System.out.println(line);
             }
-            var writer = new PrintWriter(clientSocket.getOutputStream());
+            reader.close();
+            writer.close();
+            clientSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-//    private void print(URL obj) throws IOException {
-//        URLConnection conn = obj.openConnection();
-//        Map<String, List<String>> map = conn.getHeaderFields();
-//
-//        System.out.println("Printing All Response Header for URL: " + obj.toString() + "\n");
-//        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-//            System.out.println(entry.getKey() + " : " + entry.getValue());
-//        }
-//
-//        System.out.println("\nGet Response Header By Key ...\n");
-//        List<String> contentLength = map.get("Content-Length");
-//        if (contentLength == null) {
-//            System.out.println("'Content-Length' doesn't present in Header!");
-//        } else {
-//            for (String header : contentLength) {
-//                System.out.println("Content-Lenght: " + header);
-//            }
-//        }
-//    }
 
     public void setUsed(boolean used) {
         this.used = used;
@@ -82,5 +107,3 @@ public class SimpleCurl {
         return used;
     }
 }
-
-

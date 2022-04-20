@@ -56,12 +56,14 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.gutterIcons" />
   </component>
   <component name="RunManager">
     <configuration name="SimpleCurl" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.nhnacademy.client.SimpleCurl" />
       <module name="SimpleCurl" />
-      <option name="PROGRAM_PARAMETERS" value="scurl http://httpbin.org/get" />
+      <option name="PROGRAM_PARAMETERS" value="-v -H &quot;X-Custom-Header: NA&quot; http://httpbin.org/get" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.nhnacademy.client.*" />
@@ -82,7 +84,7 @@
       <option name="presentableId" value="Default" />
       <updated>1650376485424</updated>
       <workItem from="1650376486743" duration="6910000" />
-      <workItem from="1650383845901" duration="4763000" />
+      <workItem from="1650413030059" duration="30516000" />
     </task>
     <servers />
   </component>
@@ -105,40 +107,14 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/nhnacademy/client/SimpleCurl.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/nhnacademy/client/SimpleCurl.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/nhnacademy/client/SimpleCurl.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/nhnacademy/client/SimpleCurl.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/nhnacademy/client/SimpleCurl.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/nhnacademy/client/SimpleCurl.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="31" />
+          <line>57</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="inetAddress" />
-        <watch expression="line" />
+        <watch expression="this" />
       </configuration>
     </watches-manager>
   </component>
