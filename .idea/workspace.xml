@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32cd4855-c900-4262-87f7-3775bc4b6ec1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/client/SimpleCurl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/client/SimpleCurl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/nhnacademy/client/JsonParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/nhnacademy/client/JsonParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/nhnacademy/client/SimpleCurl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/nhnacademy/client/SimpleCurl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +61,7 @@
     <configuration name="SimpleCurl" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.nhnacademy.client.SimpleCurl" />
       <module name="SimpleCurl" />
-      <option name="PROGRAM_PARAMETERS" value="-v -H &quot;X-Custom-Header: NA&quot; http://httpbin.org/get" />
+      <option name="PROGRAM_PARAMETERS" value="-v -L http://httpbin.org/status/302" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.nhnacademy.client.*" />
@@ -80,8 +82,8 @@
       <option name="presentableId" value="Default" />
       <updated>1650376485424</updated>
       <workItem from="1650376486743" duration="6910000" />
-      <workItem from="1650413030059" duration="31136000" />
-      <workItem from="1650499817840" duration="5000" />
+      <workItem from="1650413030059" duration="30516000" />
+      <workItem from="1650463374959" duration="6230000" />
     </task>
     <servers />
   </component>
@@ -100,15 +102,6 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/nhnacademy/client/SimpleCurl.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="this" />
